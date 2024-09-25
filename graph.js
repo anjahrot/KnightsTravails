@@ -10,7 +10,7 @@ const breadthFirstTraceShortestPath = (graph, start, end) => {
             let curr = JSON.stringify(currNode);
             while (curr) {
                 path.push(curr);  //Adds parent node to path-array
-                curr = prev[curr];   //Finds parent node in prevarray
+                curr = prev[curr];   //Finds parent node in prev-list
             }
             
             return path;
