@@ -1,5 +1,3 @@
-//import Linkedlist from '../LinkedList/linkedList.js'
-
 const breadthFirstShortestPath = (graph, start, end) => {
     const visited = new Set([JSON.stringify(start)]);
     const queue = [[start, 0]];
@@ -7,6 +5,7 @@ const breadthFirstShortestPath = (graph, start, end) => {
     
     while(queue.length > 0){
         let [currNode, distance] = queue.shift(); //Destructure to get node, distance and parentnode
+        console.log(currNode);
         if(JSON.stringify(currNode) === JSON.stringify(end)) {
             console.log(`You made it in ${distance} moves. Here is your path: `);
             let path = [];
@@ -43,7 +42,7 @@ const buildGraph = (dimension) => {
             let potentialNext = [[x+1, y+2], [x+2, y+1], [x+2, y-1], [x+1, y-2], [x-1, y-2], [x-2, y-1], [x-2, y+1], [x-1, y+2]];
             for (let item of potentialNext){
                 const [a, b] = item;
-                if(a>=0 && a<dimension && b>=0 && b<=dimension){
+                if(a>=0 && a<dimension && b>=0 && b<dimension){
                     graph[[x,y]].push(item);
                 }
             }
@@ -54,4 +53,4 @@ const buildGraph = (dimension) => {
 
 const boardList = buildGraph(8);
 
-console.log(breadthFirstShortestPath(boardList, [0,0], [3,3]));
+console.log(breadthFirstShortestPath(boardList, [3,3], [4,3]));
