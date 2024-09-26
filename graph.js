@@ -5,6 +5,7 @@ const breadthFirstTraceShortestPath = (graph, start, end) => {
     
     while(queue.length > 0){
         let currNode = queue.shift(); 
+        
         if(JSON.stringify(currNode) === JSON.stringify(end)) {
             let path = [];
             let curr = JSON.stringify(currNode);
@@ -15,6 +16,7 @@ const breadthFirstTraceShortestPath = (graph, start, end) => {
             
             return path;
         }
+
         for(let next of graph[currNode]){
             if(!visited.has(JSON.stringify(next))){
                 visited.add(JSON.stringify(next));
@@ -27,7 +29,7 @@ const breadthFirstTraceShortestPath = (graph, start, end) => {
 }
 
 //Build graph for moving on a board with a dimension passed as argument (e.g. 8*8 for chessboard)
-//potentialNext function implemented for knights movement on the board
+//potentialNext array implemented for knights movement on the board
 const buildGraph = (dimension) => {
     const graph =  {};
     
@@ -36,7 +38,7 @@ const buildGraph = (dimension) => {
             graph[[x,y]] = [];
             let potentialNext = [[x+1, y+2], [x+2, y+1], [x+2, y-1], [x+1, y-2], [x-1, y-2], [x-2, y-1], [x-2, y+1], [x-1, y+2]];
             for (let item of potentialNext){
-                const [a, b] = item;
+                const [a, b] = item;   //Destructure to get x and y coordinates separate
                 if(a>=0 && a<dimension && b>=0 && b<dimension){
                     graph[[x,y]].push(item);
                 }
@@ -56,4 +58,5 @@ const knightsMove = (start, end) => {
     } 
 }
 
-knightsMove([0,0],[7,7]);
+//test run
+knightsMove([3,3],[4,3]);
